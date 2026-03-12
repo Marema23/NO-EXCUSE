@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NO EXCUSE — Streetwear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=UnifrakturMaguntia&family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="announce-bar">NO EXCUSE. JUST RESULT</div>
+
+<header>
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <div class="logo">NO EXCUSE</div>
+  <button class="cart-btn" onclick="openCart()">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <path d="M16 10a4 4 0 01-8 0"/>
+    </svg>
+    <span class="cart-bubble" id="cartBubble">0</span>
+  </button>
+</header>
+
+<div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+<nav class="side-nav" id="sideNav">
+  <button class="nav-close" onclick="closeMenu()">✕</button>
+  <ul>
+    <li><a href="#" onclick="closeMenu();scrollTo(0,0)">Accueil</a></li>
+    <li><a href="#" onclick="closeMenu();doFilter(null)">Shop</a></li>
+    <li><a href="#" onclick="closeMenu();doFilter('tshirt')">T-shirt</a></li>
+    <li><a href="#" onclick="closeMenu();doFilter('bonnet')">Bonnet</a></li>
+    <li><a href="#" onclick="closeMenu();doFilter('hoodie')">Hoodie</a></li>
+    <li><a href="#" onclick="closeMenu();doFilter('accessoire')">Accessoires</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-photo" src="images/hero.jpg" alt="NO EXCUSE">
+  <div class="hero-overlay"></div>
+  <button class="hero-btn" onclick="scrollShop()">VOIR LA COLLECTION</button>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>NO EXCUSE</span><span class="bull">✦</span>
+    <span>JUST RESULT</span><span class="bull">✦</span>
+    <span>NO EXCUSE</span><span class="bull">✦</span>
+    <span>JUST RESULT</span><span class="bull">✦</span>
+    <span>NO EXCUSE</span><span class="bull">✦</span>
+    <span>JUST RESULT</span><span class="bull">✦</span>
+  </div>
+</div>
+
+<!-- SHOP -->
+<section class="shop-section" id="shopAnchor">
+  <div class="shop-title">LA COLLECTION</div>
+  <div class="filters">
+    <button class="filter-btn active" onclick="doFilter(null)">Tous</button>
+    <button class="filter-btn" onclick="doFilter('tshirt')">T-shirts</button>
+    <button class="filter-btn" onclick="doFilter('bonnet')">Bonnets</button>
+    <button class="filter-btn" onclick="doFilter('hoodie')">Hoodies</button>
+    <button class="filter-btn" onclick="doFilter('accessoire')">Accessoires</button>
+  </div>
+  <div class="prod-grid" id="prodGrid"></div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-ico">✉</div>
+  <h3>NEWSLETTER</h3>
+  <p>Inscrivez-vous pour recevoir nos nouveautés et promotions</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="Votre email">
+    <button class="newsletter-btn">OK</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-section">
+    <div class="ft-title">INFORMATION</div>
+    <p>NO EXCUSE</p>
+    <div class="ft-socials">
+      <a href="https://www.tiktok.com/@no_excuse_officiel" target="_blank" class="soc-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.79 1.54V6.79a4.85 4.85 0 01-1.02-.1z"/></svg>
+      </a>
+      <a href="https://wa.me/221773985255" target="_blank" class="soc-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.054 23.446a.5.5 0 00.616.599l5.8-1.522A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.723 9.723 0 01-4.964-1.356l-.356-.212-3.688.968.984-3.595-.232-.369A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="ft-section">
+    <div class="ft-title">MENU</div>
+    <ul>
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#" onclick="doFilter('tshirt')">T-shirt</a></li>
+      <li><a href="#" onclick="doFilter('bonnet')">Bonnet</a></li>
+      <li><a href="#" onclick="doFilter('hoodie')">Hoodies</a></li>
+      <li><a href="#" onclick="doFilter('accessoire')">Accessoires</a></li>
+    </ul>
+  </div>
+  <div class="ft-section">
+    <div class="ft-title">PAIEMENT</div>
+   <div class="ft-payments">
+  <span class="pay-logo wave-logo">Wave</span>
+  <span class="pay-logo om-logo">Orange<br>Money</span>
+  <span class="pay-logo visa-logo">VISA</span>
+  <span class="pay-logo cash-logo">Cash</span>
+</div>
+  </div>
+  <div class="ft-contact">
+  <div class="ft-contact-btn">
+    <span>📍</span>
+    <span>DAKAR</span>
+  </div>
+  <div class="ft-contact-btn">
+    <span>📞</span>
+    <span>TÉLÉPHONE : +221 77 398 52 55/+221 77590 64 83</span>
+  </div>
+</div>
+<div class="ft-copy">copyright © 2026 No Excuse. Tous droits réservés.</div>
+</footer>
+
+<!-- CART PANEL -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-panel" id="cartPanel">
+  <div class="cart-panel-head">
+    <span>PANIER</span>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span>TOTAL</span>
+      <span class="cart-total-val" id="cartTotal">0 CFA</span>
+    </div>
+    <button class="btn-checkout" onclick="closeCart();openCheckout()">PASSER LA COMMANDE</button>
+    <button class="btn-vider" onclick="clearCart()">🗑 VIDER LE PANIER</button>
+  </div>
+</div>
+
+<!-- PRODUCT SHEET avec galerie -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+<div class="size-sheet" id="sizeSheet">
+  <div class="sheet-top">
+    <div class="sheet-gallery">
+      <img id="sheetMainImg" src="" alt="">
+    </div>
+    <div class="sheet-thumbs" id="sheetThumbs"></div>
+  </div>
+  <div class="sheet-head">
+    <span id="sheetName"></span>
+    <button class="sheet-close" onclick="closeSheet()">✕</button>
+  </div>
+  <div class="sheet-price" id="sheetPrice"></div>
+  <div class="sizes-grid" id="sizesGrid"></div>
+  <div class="qty-row">
+  <span class="qty-label">Quantité</span>
+  <div class="qty-ctrl">
+    <button class="qty-btn" onclick="changeQty(-1)">−</button>
+    <div class="qty-val" id="qtyVal">1</div>
+    <button class="qty-btn" onclick="changeQty(1)">+</button>
+  </div>
+</div>
+<button class="btn-add" id="btnAdd" disabled onclick="addToCart()">AJOUTER AU PANIER</button>
+</div>
+
+<!-- CHECKOUT -->
+<div class="checkout-page" id="checkoutPage">
+  <div class="checkout-head">
+    <span>PASSER LA COMMANDE</span>
+    <button class="checkout-close" onclick="closeCheckout()">✕</button>
+  </div>
+  <div class="order-summary">
+    <div class="summary-title">VOTRE COMMANDE</div>
+    <div id="orderItems"></div>
+    <div class="order-total">
+      <span>TOTAL</span>
+      <span id="orderTotal" style="color:#e01a1a">0 CFA</span>
+    </div>
+  </div>
+  <div class="checkout-form">
+    <div class="form-title">VOS INFORMATIONS</div>
+    <div class="field"><label>Nom complet</label><input type="text" id="fName" placeholder="Votre nom"></div>
+    <div class="field"><label>Téléphone</label><input type="tel" id="fPhone" placeholder="+221 77 000 00 00"></div>
+    <div class="field">
+  <label>Région</label>
+  <select id="fRegion" style="width:100%;border:1px solid #e5e5e5;padding:11px 12px;font-size:13px;outline:none;appearance:auto;background:#fff;">
+    <option value="">-- Choisir une région --</option>
+    <option>Dakar</option>
+    <option>Thiès</option>
+    <option>Diourbel</option>
+    <option>Fatick</option>
+    <option>Kaolack</option>
+    <option>Kaffrine</option>
+    <option>Kolda</option>
+    <option>Louga</option>
+    <option>Matam</option>
+    <option>Saint-Louis</option>
+    <option>Sédhiou</option>
+    <option>Tambacounda</option>
+    <option>Ziguinchor</option>
+    <option>Kédougou</option>
+  </select>
+</div>
+<div class="field"><label>Adresse de livraison</label><input type="text" id="fAddress" placeholder="Quartier, rue..."></div>
+    <div class="field">
+  <label>Mode de paiement</label>
+  <div class="payment-opts">
+  <button class="pay-opt wave-opt active" onclick="selPay(this,'Wave')">Wave</button>
+  <button class="pay-opt om-opt" onclick="selPay(this,'Orange Money')">Orange Money</button>
+  <button class="pay-opt visa-opt" onclick="selPay(this,'Visa')">VISA</button>
+  <button class="pay-opt" onclick="selPay(this,'Cash')">Cash</button>
+<div style="background:#fff3cd; border:1px solid #ffc107; padding:10px 14px; margin-top:14px; font-size:11px; color:#856404; letter-spacing:1px; line-height:1.6;">
+  ⚠️ Les frais de livraison sont à la charge du client. NO EXCUSE n'est pas responsable des délais de livraison.
+</div>
+</div>
+</div>   
+ </div>
+    <button class="btn-submit" onclick="submitOrder()">CONFIRMER VIA WHATSAPP</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
